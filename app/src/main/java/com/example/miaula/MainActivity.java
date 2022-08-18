@@ -1,8 +1,10 @@
 package com.example.miaula;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.miaula.Controllers.CourseController;
+import com.example.miaula.Fragments.AddCourseFragment;
 import com.example.miaula.Fragments.ListCoursesFragment;
 import com.example.miaula.databinding.ActivityMainBinding;
 
@@ -25,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private FloatingActionButton fab;
 
+    private CourseController courseController;
     private ListCoursesFragment listCoursesFragment;
+    private AddCourseFragment addCourseFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +41,58 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
-
+        courseController = new CourseController();
         addListCourses();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View view) {
+//                getSupportFragmentManager().popBackStack();
+                if (getSupportFragmentManager().getFragments().size() == 1){
+                    System.out.println("un solo fragmento");
+                    return;
+                }
+                Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
+                System.out.println("Fragmento:" +fragment.getTag());
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                if (getSupportFragmentManager().getFragments().size() == 2){
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    fab.setVisibility(View.VISIBLE);
+                    return;
+                }
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                addCourseFragment();
             }
         });
     }
 
+    @SuppressLint("RestrictedApi")
+    private void addCourseFragment(){
+        addCourseFragment = new AddCourseFragment(courseController);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.add(R.id.cl_fragment, addCourseFragment, "AddCourseFragment").commit();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        fab.setVisibility(View.GONE);
+    }
+
     private void addListCourses(){
-        listCoursesFragment = new ListCoursesFragment();
+        listCoursesFragment = new ListCoursesFragment(courseController);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.add(R.id.cl_fragment, listCoursesFragment, "ListCoursesFragment").commit();
+    }
+
+    public void onResumeCourses(){
+        listCoursesFragment.updateListCourses();
     }
 
     @Override
@@ -77,4 +117,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        if (getSupportFragmentManager().getFragments().size() == 1){
+
+
+        }
+        super.onResume();
+    }
 }

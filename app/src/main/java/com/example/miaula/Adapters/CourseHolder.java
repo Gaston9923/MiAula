@@ -48,8 +48,6 @@ public class CourseHolder extends RecyclerView.ViewHolder {
         DrawableCompat.setTint(viewDrawable, course.getColor());
         iconCourse.setBackground(viewDrawable);
 
-//        iconCourse.setBackgroundTintList(context.getResources().getColorStateList(course.getColor()));
-//        iconCourse.setBackgroundTintList(context.getResources().getColorStateList(Color.parseColor(course.getColor()) ));
     }
 
 }

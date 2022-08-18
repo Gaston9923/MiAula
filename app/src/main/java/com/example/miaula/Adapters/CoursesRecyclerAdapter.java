@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Models.Course;
 import com.example.miaula.R;
 
@@ -15,11 +16,14 @@ import java.util.ArrayList;
 
 public class CoursesRecyclerAdapter extends RecyclerView.Adapter<CourseHolder> {
 
+    private CourseController courseController;
     private ArrayList<Course> courses;
     private Context context;
 
-    public CoursesRecyclerAdapter(ArrayList<Course> courses) {
-        this.courses = courses;
+    public CoursesRecyclerAdapter(CourseController courseController) {
+        this.courseController = courseController;
+        this.courses = courseController.getCourses();
+
     }
 
     @NonNull

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/googlepixel2_1">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/ibm_plex_sans_medium"
+        android:text="Agregar Curso/Grado"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_school"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangle_with_borders_white"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:fontFamily="@font/ibm_plex_sans"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:text="Escuela"
+        android:textColor="@android:color/system_neutral1_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/et_course"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangle_with_borders_white"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:fontFamily="@font/ibm_plex_sans"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:text="Grupo y ciclo"
+        android:textColor="@android:color/system_neutral1_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_school" />
+
+    <EditText
+        android:id="@+id/et_subject"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangle_with_borders_white"
+        android:backgroundTint="#D9D9D9"
+        android:ems="10"
+        android:fontFamily="@font/ibm_plex_sans"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:text="Materia"
+        android:textColor="@android:color/system_neutral1_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_course" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ibm_plex_sans"
+        android:text="Selecciona un color"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_subject" />
+
+</android.support.constraint.ConstraintLayout>

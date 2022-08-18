@@ -53,4 +53,12 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/icons8_left_100"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
 </android.support.constraint.ConstraintLayout>

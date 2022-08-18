@@ -9,7 +9,7 @@ public class CourseController {
     private ArrayList<Course> courses;
 
     public CourseController() {
-
+        courses = new ArrayList<>();
     }
 
     public CourseController(ArrayList<Course> courses) {
@@ -22,5 +22,9 @@ public class CourseController {
 
     public void setCourses(ArrayList<Course> courses) {
         this.courses = courses;
+    }
+
+    public void addCourse(Course course) {
+        this.courses.add(course);
     }
 }
