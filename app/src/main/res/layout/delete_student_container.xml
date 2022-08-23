@@ -12,7 +12,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/rectangle_with_borders_white"
         android:backgroundTint="#D9D9D9"
         android:elevation="10dp"
@@ -21,58 +21,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/btn_remove"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="4dp"
-            android:background="@drawable/icons8_menu_vertical_96___"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/tv_surname"
+            android:id="@+id/tv_delete_surname"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="2dp"
             android:fontFamily="@font/ibm_plex_sans"
             android:gravity="bottom"
-            android:text="Curso 1°C"
+            android:text="Perez"
             android:textColor="@color/black"
             android:textSize="24dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_names"
-            app:layout_constraintStart_toEndOf="@+id/icon_course"
+            app:layout_constraintStart_toEndOf="@+id/icon_student_men"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_names"
+            android:id="@+id/tv_delete_names"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="2dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/ibm_plex_sans"
-            android:text="Lengua y Literatura"
+            android:text="Juan Ignacio"
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_course"
+            app:layout_constraintStart_toEndOf="@+id/icon_student_men"
             app:layout_constraintTop_toBottomOf="@+id/tv_surname" />
 
         <ImageView
-            android:id="@+id/icon_course"
+            android:id="@+id/icon_student_men"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/circle_white"
             android:backgroundTint="@color/color_principal"
-            android:foreground="@drawable/icons8_classroom_1001"
+            android:foreground="@drawable/icons8_student_96_1_1"
             android:foregroundGravity="center"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_student_women"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/circle_white"
+            android:backgroundTint="@color/purple_200"
+            android:foreground="@drawable/icons8_student_961"
+            android:foregroundGravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_remove"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/icons8_remove_96"
+            android:backgroundTint="@color/red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

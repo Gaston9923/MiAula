@@ -30,7 +30,7 @@
         android:layout_marginEnd="20dp"
         android:autoText="true"
         android:background="@drawable/rectangle_with_borders_white"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@android:color/system_accent1_200"
         android:ems="10"
         android:fontFamily="@font/ibm_plex_sans"
         android:hint="Escuela"
@@ -51,7 +51,7 @@
         android:layout_marginEnd="20dp"
         android:autoText="true"
         android:background="@drawable/rectangle_with_borders_white"
-        android:backgroundTint="#D9D9D9"
+        android:backgroundTint="@android:color/system_accent1_100"
         android:ems="10"
         android:fontFamily="@font/ibm_plex_sans"
         android:hint="Grupo y ciclo"
@@ -87,15 +87,17 @@
         app:layout_constraintTop_toBottomOf="@+id/et_course" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_select_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="@font/ibm_plex_sans"
         android:text="Selecciona un color"
         android:textColor="@color/black"
         android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_subject" />
 
@@ -110,48 +112,57 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        app:layout_constraintTop_toBottomOf="@+id/tv_select_color">
 
         <Button
             android:id="@+id/btn_green"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="8dp"
             android:background="@drawable/rectangle_with_borders_white"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/green"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btn_red"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="8dp"
             android:background="@drawable/rectangle_with_borders_white"
-            android:backgroundTint="#F44336" />
+            android:backgroundTint="@color/red"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btn_lightblue"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="8dp"
             android:background="@drawable/rectangle_with_borders_white"
-            android:backgroundTint="#2196F3" />
+            android:backgroundTint="@color/lightblue"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btn_orange"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="8dp"
             android:background="@drawable/rectangle_with_borders_white"
-            android:backgroundTint="#FF9800" />
+            android:backgroundTint="@color/orange"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/btn_purple"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="8dp"
             android:background="@drawable/rectangle_with_borders_white"
-            android:backgroundTint="#673AB7" />
+            android:backgroundTint="@color/purple"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </LinearLayout>
 
@@ -162,12 +173,13 @@
         android:layout_marginTop="30dp"
         android:layout_weight="1"
         android:background="@drawable/rectangle_with_borders_white"
-        android:backgroundTint="#4CB450"
+        android:backgroundTint="@color/green"
         android:fontFamily="@font/ibm_plex_sans"
         android:text="Agregar"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="TextContrastCheck" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,30 +1,27 @@
 package com.example.miaula.Models;
 
-import android.graphics.Color;
-
 import java.util.ArrayList;
 
 public class Course {
 
+    private int idCourse;
     private String school;
     private String course;
     private String subject;
     private int color;
     private ArrayList<Student> students;
 
-    public Course(String school, String course, String subject, int color, ArrayList<Student> students) {
+    public Course(int idCourse, String school, String course, String subject, int color) {
+        this.idCourse = idCourse;
         this.school = school;
         this.course = course;
         this.subject = subject;
         this.color = color;
-        this.students = students;
+        this.students = new ArrayList<>();
     }
 
-    public Course(String school, String course, String subject, int color) {
-        this.school = school;
-        this.course = course;
-        this.subject = subject;
-        this.color = color;
+    public int getIdCourse() {
+        return idCourse;
     }
 
     public String getSchool() {
@@ -65,5 +62,9 @@ public class Course {
 
     public void setStudents(ArrayList<Student> students) {
         this.students = students;
+    }
+
+    public void setStudent(Student student) {
+        this.students.add(student);
     }
 }

@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
 //                getSupportFragmentManager().popBackStack();
                 if (getSupportFragmentManager().getFragments().size() == 1){
                     System.out.println("un solo fragmento");
+                    fab.setVisibility(View.VISIBLE);
                     return;
-                }
+                }else fab.setVisibility(View.INVISIBLE);
                 Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
                 System.out.println("Fragmento:" +fragment.getTag());
                 getSupportFragmentManager().beginTransaction().remove(fragment).commit();
@@ -91,8 +92,15 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.cl_fragment, listCoursesFragment, "ListCoursesFragment").commit();
     }
 
+    @SuppressLint("RestrictedApi")
+    public void hideFab(){
+        fab.setVisibility(View.INVISIBLE);
+    }
+
+    @SuppressLint("RestrictedApi")
     public void onResumeCourses(){
         listCoursesFragment.updateListCourses();
+        fab.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -117,12 +125,30 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("RestrictedApi")
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getFragments().size() == 1){
+            System.out.println("un solo fragmento");
+            fab.setVisibility(View.VISIBLE);
+            return;
+        }else fab.setVisibility(View.INVISIBLE);
+        Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
+        System.out.println("Fragmento:" +fragment.getTag());
+        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        if (getSupportFragmentManager().getFragments().size() == 2){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            fab.setVisibility(View.VISIBLE);
+            return;
+        }
+    }
+
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onResume() {
         if (getSupportFragmentManager().getFragments().size() == 1){
-
-
-        }
+            fab.setVisibility(View.VISIBLE);
+        }else fab.setVisibility(View.INVISIBLE);
         super.onResume();
     }
 }

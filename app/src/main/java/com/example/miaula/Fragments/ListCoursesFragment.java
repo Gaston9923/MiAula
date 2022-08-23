@@ -39,9 +39,7 @@ public class ListCoursesFragment extends Fragment {
         rvListCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvListCourses.setHasFixedSize(true);
         ArrayList<Course> courses = new ArrayList<>();
-        courses.add(new Course("Bandera Argentina","Cuarto B","Matematicas", Color.parseColor("#FFFFFF")));
-        courses.add(new Course("Don Orione","Sexto B","Lengua y Literatura",Color.parseColor("#00FFFF")));
-        courses.add(new Course("Don Orione","Sexto B","Lengua y Literatura",Color.parseColor("#00FAAA")));
+//        courses.add(new Course("Bandera Argentina","Cuarto B","Matematicas", Color.parseColor("#FFFFFF")));
         courseController.setCourses(courses);
         coursesRecyclerAdapter = new CoursesRecyclerAdapter(courseController);
         rvListCourses.setAdapter(coursesRecyclerAdapter);
