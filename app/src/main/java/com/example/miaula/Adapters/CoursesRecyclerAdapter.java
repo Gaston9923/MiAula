@@ -3,17 +3,17 @@ package com.example.miaula.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.miaula.Controllers.CourseController;
-import com.example.miaula.Fragments.AddCourseFragment;
+
 import com.example.miaula.Fragments.MenuCourseFragment;
 import com.example.miaula.MainActivity;
 import com.example.miaula.Models.Course;
@@ -30,6 +30,7 @@ public class CoursesRecyclerAdapter extends RecyclerView.Adapter<CourseHolder> {
 
     public CoursesRecyclerAdapter(CourseController courseController) {
         this.courseController = courseController;
+//        System.out.println("Listado de cursos:"+courseController.getCourses().toString());
         this.courses = courseController.getCourses();
         menuCourseFragment = new MenuCourseFragment(courseController);
     }
@@ -45,6 +46,7 @@ public class CoursesRecyclerAdapter extends RecyclerView.Adapter<CourseHolder> {
     @Override
     public void onBindViewHolder(@NonNull CourseHolder courseHolder, int position) {
         Course course = courses.get(position);
+        System.out.println("Curso:"+course.toString());
         courseHolder.prepareElements(course, context);
         
         courseHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,7 @@ public class CoursesRecyclerAdapter extends RecyclerView.Adapter<CourseHolder> {
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putInt("idCourse",course.getIdCourse());
+                System.out.println("idCourse:"+course.getIdCourse());
                 menuCourseFragment.setArguments(bundle);
                 MainActivity activity = (MainActivity) view.getContext();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();

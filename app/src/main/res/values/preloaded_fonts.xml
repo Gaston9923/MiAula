@@ -3,5 +3,6 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/ibm_plex_sans</item>
         <item>@font/ibm_plex_sans_medium</item>
+        <item>@font/im_fell_double_pica</item>
     </array>
 </resources>

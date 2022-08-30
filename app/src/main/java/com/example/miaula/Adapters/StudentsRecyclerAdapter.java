@@ -2,18 +2,14 @@ package com.example.miaula.Adapters;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.miaula.Controllers.CourseController;
-import com.example.miaula.Fragments.MenuCourseFragment;
-import com.example.miaula.Models.Course;
 import com.example.miaula.Models.Student;
 import com.example.miaula.R;
 
@@ -31,7 +27,8 @@ public class StudentsRecyclerAdapter extends RecyclerView.Adapter<StudentHolder>
     public StudentsRecyclerAdapter(int idCourse,CourseController courseController) {
         this.idCourse = idCourse;
         this.courseController = courseController;
-        this.students = courseController.getCourses().get(idCourse).getStudents();
+        this.students = courseController.getCourse(idCourse).getStudents();
+        System.out.println("Cursooo:"+courseController.getCourse(idCourse));
     }
 
     @NonNull

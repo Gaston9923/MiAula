@@ -2,25 +2,27 @@ package com.example.miaula.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.res.ColorStateList;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.MainActivity;
 import com.example.miaula.Models.Course;
 import com.example.miaula.R;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 
 @SuppressLint("ValidFragment")
@@ -28,15 +30,16 @@ public class AddCourseFragment extends Fragment {
 
     private AddCourseFragment self = this;
     private final CourseController courseController;
+    private ArrayList<Course> listCourses = new ArrayList<>();
     private EditText etSchool;
     private EditText etCourse;
     private EditText etSubject;
     private TextView tvSelectColor;
     private int colorCourse;
 
-    private Button btnGreen;
-    private Button btnRed;
-    private Button btnLightBlue;
+    private Button btnPink;
+    private Button btnBlue;
+    private Button btnYellow;
     private Button btnOrange;
     private Button btnPurple;
     private Button btnAdd;
@@ -69,31 +72,33 @@ public class AddCourseFragment extends Fragment {
                         }
                     });
                     int id = 0;
-                    courseController.addCourse(new Course(id+1,etSchool.getText().toString(),
-                            etCourse.getText().toString(),
-                            etSubject.getText().toString(),colorCourse));
+                    Course course = new Course(id+1,etSchool.getText().toString(),
+                                                            etCourse.getText().toString(),
+                                                            etSubject.getText().toString(),colorCourse);
+                    courseController.addCourse(course);
+                    saveInDevice(course);
                     getFragmentManager().beginTransaction().remove(self).commit();
                     mainActivity.onResumeCourses();
                 }
             }
         });
 
-        btnGreen.setOnClickListener(new View.OnClickListener() {
+        btnPink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectColor(btnGreen, R.color.green);
+                selectColor(btnPink, R.color.pink);
             }
         });
-        btnRed.setOnClickListener(new View.OnClickListener() {
+        btnBlue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectColor(btnRed, R.color.red);
+                selectColor(btnBlue, R.color.blue);
             }
         });
-        btnLightBlue.setOnClickListener(new View.OnClickListener() {
+        btnYellow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                selectColor(btnLightBlue, R.color.lightblue);
+                selectColor(btnYellow, R.color.yellow);
             }
         });
         btnOrange.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +116,17 @@ public class AddCourseFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void saveInDevice(Course course){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        listCourses.add(course);
+        String json = gson.toJson(listCourses);
+        editor.putString("courses",json);
+        editor.apply();
+        System.out.println("Curso guardado en el dispositivo!");
     }
 
     private boolean inputsValidate(){
@@ -137,11 +153,11 @@ public class AddCourseFragment extends Fragment {
         etSchool = root.findViewById(R.id.et_school);
         etCourse = root.findViewById(R.id.et_course);
         etSubject = root.findViewById(R.id.et_subject);
-        btnGreen = root.findViewById(R.id.btn_green);
-        btnLightBlue = root.findViewById(R.id.btn_lightblue);
+        btnPink = root.findViewById(R.id.btn_pink);
         btnOrange = root.findViewById(R.id.btn_orange);
-        btnRed = root.findViewById(R.id.btn_red);
+        btnBlue = root.findViewById(R.id.btn_blue);
         btnPurple = root.findViewById(R.id.btn_purple);
+        btnYellow = root.findViewById(R.id.btn_yellow);
         btnAdd = root.findViewById(R.id.btn_add);
         tvSelectColor = root.findViewById(R.id.tv_select_color);
         colorCourse = R.color.white;

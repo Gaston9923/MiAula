@@ -11,6 +11,9 @@ public class Course {
     private int color;
     private ArrayList<Student> students;
 
+    public Course() {
+    }
+
     public Course(int idCourse, String school, String course, String subject, int color) {
         this.idCourse = idCourse;
         this.school = school;
@@ -66,5 +69,17 @@ public class Course {
 
     public void setStudent(Student student) {
         this.students.add(student);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "idCourse=" + idCourse +
+                ", school='" + school + '\'' +
+                ", course='" + course + '\'' +
+                ", subject='" + subject + '\'' +
+                ", color=" + color +
+                ", students=" + students +
+                '}';
     }
 }

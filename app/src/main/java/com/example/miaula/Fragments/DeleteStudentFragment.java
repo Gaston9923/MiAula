@@ -1,19 +1,18 @@
 package com.example.miaula.Fragments;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miaula.Adapters.StudentsRecyclerAdapter;
 import com.example.miaula.Controllers.CourseController;
@@ -48,7 +47,7 @@ public class DeleteStudentFragment extends Fragment {
     }
 
     private void showStudents(){
-        if (courseController.getCourses().get(idCourse).getStudents().size()==0){
+        if (courseController.getCourse(idCourse).getStudents().size()==0){
             tvNoStudents.setVisibility(View.VISIBLE);
             rvDeleteListStudent.setVisibility(View.INVISIBLE);
         }else {

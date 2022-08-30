@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_student"
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -14,8 +14,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="14dp"
         android:background="@drawable/rectangle_with_borders_white"
-        android:backgroundTint="#D9D9D9"
-        android:elevation="10dp"
+        android:backgroundTint="#C6EEFB"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +71,9 @@
             android:backgroundTint="@color/color_principal"
             android:foreground="@drawable/icons8_classroom_1001"
             android:foregroundGravity="center"
+            android:foregroundTint="@android:color/system_neutral1_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

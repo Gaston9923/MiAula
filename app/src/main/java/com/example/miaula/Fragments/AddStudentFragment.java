@@ -3,10 +3,6 @@ package com.example.miaula.Fragments;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Models.Student;
@@ -28,9 +28,11 @@ public class AddStudentFragment extends Fragment {
     private EditText etNames;
     private Spinner spGender;
     private String [] optionsGender;
+    private int idCourse;
 
-    public AddStudentFragment(CourseController courseController) {
+    public AddStudentFragment(CourseController courseController,int idCourse) {
         this.courseController = courseController;
+        this.idCourse = idCourse;
     }
 
     @Nullable
@@ -47,8 +49,9 @@ public class AddStudentFragment extends Fragment {
                 Student s = new Student(idStudent+1, etSurnames.getText().toString(),
                                                              etNames.getText().toString(),
                                                              spGender.getSelectedItem().toString());
-                courseController.addStudent(0,s);
+                courseController.addStudent(idCourse,s);
                 showAlertNewStudent();
+                cleanInputs();
             }
         });
 
@@ -67,6 +70,11 @@ public class AddStudentFragment extends Fragment {
                 d.dismiss();
             }
         });
+    }
+
+    private void cleanInputs(){
+        etSurnames.setText("");
+        etNames.setText("");
     }
 
     private void initElements(View root){

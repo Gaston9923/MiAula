@@ -1,37 +1,42 @@
 package com.example.miaula;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Fragments.AddCourseFragment;
 import com.example.miaula.Fragments.ListCoursesFragment;
-import com.example.miaula.databinding.ActivityMainBinding;
+import com.example.miaula.Models.Course;
+import com.google.android.material.circularreveal.CircularRevealFrameLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
-
-    private CourseController courseController;
+    private final MainActivity self = this;
+    private CourseController courseController = CourseController.getInstance();
     private ListCoursesFragment listCoursesFragment;
     private AddCourseFragment addCourseFragment;
+    private ArrayList<Course> arrayCourses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
-        courseController = new CourseController();
+        arrayCourses = new ArrayList<>();
+        getCoursesFromDevice();
         addListCourses();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -71,6 +77,20 @@ public class MainActivity extends AppCompatActivity {
                 addCourseFragment();
             }
         });
+    }
+
+    private void getCoursesFromDevice(){
+        SharedPreferences sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("courses",null);
+        if (json != null){
+            Type type = new TypeToken<ArrayList<Course>>() {}.getType();
+            arrayCourses = gson.fromJson(json,type);
+            System.out.println("Cursos:"+arrayCourses);
+            courseController.setCourses(arrayCourses);
+        }
+        courseController.setCourses(new ArrayList<>());
+
     }
 
     @SuppressLint("RestrictedApi")

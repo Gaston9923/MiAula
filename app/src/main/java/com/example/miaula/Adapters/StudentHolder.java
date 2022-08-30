@@ -2,14 +2,15 @@ package com.example.miaula.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Models.Student;
@@ -26,7 +27,7 @@ public class StudentHolder extends RecyclerView.ViewHolder {
     private ImageView iconStudentWomen;
     private ImageView btnRemove;
 
-    public StudentHolder(@NonNull View itemView,StudentsRecyclerAdapter adapter , Context context) {
+    public StudentHolder(@NonNull View itemView, StudentsRecyclerAdapter adapter , Context context) {
         super(itemView);
         this.context = context;
         this.adapter = adapter;

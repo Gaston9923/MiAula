@@ -12,7 +12,14 @@
     <color name="green">#4CAF50</color>
     <color name="red">#F44336</color>
     <color name="lightblue">#2196F3</color>
-    <color name="orange">#FF9800</color>
-    <color name="purple">#673AB7</color>
+<!--    <color name="orange">#FF9800</color>-->
+<!--    <color name="purple">#673AB7</color>-->
+
+
+    <color name="pink">#ff5a9d</color>
+    <color name="blue">#005BFF</color>
+    <color name="orange">#fb783e</color>
+    <color name="yellow">#ffe939</color>
+    <color name="purple">#714dce</color>
 
 </resources>

@@ -1,22 +1,22 @@
 package com.example.miaula.Fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miaula.Adapters.CoursesRecyclerAdapter;
 import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Models.Course;
 import com.example.miaula.R;
-
 import java.util.ArrayList;
 
 @SuppressLint("ValidFragment")
@@ -24,6 +24,7 @@ public class ListCoursesFragment extends Fragment {
 
     private RecyclerView rvListCourses;
     private CourseController courseController;
+    private ArrayList<Course> courses;
 
     private CoursesRecyclerAdapter coursesRecyclerAdapter;
 
@@ -38,9 +39,6 @@ public class ListCoursesFragment extends Fragment {
         rvListCourses = root.findViewById(R.id.rv_list_courses);
         rvListCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvListCourses.setHasFixedSize(true);
-        ArrayList<Course> courses = new ArrayList<>();
-//        courses.add(new Course("Bandera Argentina","Cuarto B","Matematicas", Color.parseColor("#FFFFFF")));
-        courseController.setCourses(courses);
         coursesRecyclerAdapter = new CoursesRecyclerAdapter(courseController);
         rvListCourses.setAdapter(coursesRecyclerAdapter);
 
