@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "33960302918",
+    "project_id": "miaula-g9923",
+    "storage_bucket": "miaula-g9923.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33960302918:android:e7dc8ea1c706d37975ad47",
+        "android_client_info": {
+          "package_name": "com.example.miaula"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33960302918-holkho6pamak6p33kdhpoghn58264tuv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJVGfmFrNYlWaQmm0W8olg623dS24fN18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33960302918-holkho6pamak6p33kdhpoghn58264tuv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
