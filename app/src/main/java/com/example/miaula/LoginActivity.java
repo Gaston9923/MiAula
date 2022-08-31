@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.miaula.Models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,37 +30,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnSignGoogle;
+
     private GoogleSignInClient googleSignInClient;
     private final static int RC_SIGN_IN = 123;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
-//    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-//            new FirebaseAuthUIActivityResultContract(),
-//            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
-//                @Override
-//                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
-//                    onSignInResult(result);
-//                }
-//            }
-//    );
-//
-//    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
-//        IdpResponse response = result.getIdpResponse();
-//        if (result.getResultCode() == RESULT_OK) {
-//            // Successfully signed in
-//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//            System.out.println("Correcto");
-//            // ...
-//        } else {
-//            System.out.println("Error al iniciar");
-//            // Sign in failed. If response is null the user canceled the
-//            // sign-in flow using the back button. Otherwise check
-//            // response.getError().getErrorCode() and handle the error.
-//            // ...
-//        }
-//    }
-
-
+    private User userLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 //        }else{
 //
 //        }
-
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.GoogleBuilder().build());
-//
-//        Intent signInIntent = AuthUI.getInstance()
-//                .createSignInIntentBuilder()
-//                .setAvailableProviders(providers)
-//                .build();
-//        signInLauncher.launch(signInIntent);
 
     }
 
@@ -135,16 +101,21 @@ public class LoginActivity extends AppCompatActivity {
                     //Si inicio correctamente
                     FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                    if (task.getResult().getAdditionalUserInfo().isNewUser()){
+//                    if (task.getResult().getAdditionalUserInfo().isNewUser()){
                         String uid = user.getUid();
                         String correo = user.getEmail();
                         String name = user.getDisplayName();
                         String number = user.getPhoneNumber();
                         Uri photo = user.getPhotoUrl();
+                        userLogin = new User(uid,correo,name,number,photo);
                         Toast.makeText(getApplicationContext(),"Usuario:"+uid+correo+name,Toast.LENGTH_LONG).show();
-                    }
+//                    }
                     //Ir al inicio de la app
                     Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("userLogin",userLogin);
+//                    mainActivityIntent.putExtra("userLogin",userLogin);
+                    mainActivityIntent.putExtras(bundle);
                     startActivity(mainActivityIntent);
                 }else{
                     Toast.makeText(getApplicationContext(),"Hubo un error al iniciar sesión, intente nuevamente!",Toast.LENGTH_LONG).show();

@@ -11,6 +11,7 @@ import com.example.miaula.Controllers.CourseController;
 import com.example.miaula.Fragments.AddCourseFragment;
 import com.example.miaula.Fragments.ListCoursesFragment;
 import com.example.miaula.Models.Course;
+import com.example.miaula.Models.User;
 import com.google.android.material.circularreveal.CircularRevealFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -18,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -37,11 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private ListCoursesFragment listCoursesFragment;
     private AddCourseFragment addCourseFragment;
     private ArrayList<Course> arrayCourses;
+    private User userLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getUserLogged();
 
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
@@ -77,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
                 addCourseFragment();
             }
         });
+    }
+
+    private void getUserLogged(){
+        userLogin = (User) getIntent().getSerializableExtra("userLogin");
+        System.out.println("user: "+userLogin);
+//        Toast.makeText(getApplicationContext(), (CharSequence) userLogin,Toast.LENGTH_LONG).show();
     }
 
     private void getCoursesFromDevice(){
