@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.miaula.Models.MenuActivity;
 import com.example.miaula.Models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -112,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Usuario:"+uid+correo+name,Toast.LENGTH_LONG).show();
 //                    }
                     //Ir al inicio de la app
-                    Intent mainActivityIntent = new Intent(getApplicationContext(), MenuActivity.class);
+                    Intent mainActivityIntent = new Intent(getApplicationContext(),MainActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("userLogin",userLogin);
 //                    mainActivityIntent.putExtra("userLogin",userLogin);

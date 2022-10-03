@@ -2,6 +2,7 @@ package com.example.miaula;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.example.miaula.Models.Course;
 import com.example.miaula.Models.User;
 import com.google.android.material.circularreveal.CircularRevealFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,16 +23,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
 
     private Toolbar toolbar;
     private FloatingActionButton fab;
@@ -48,39 +58,50 @@ public class MainActivity extends AppCompatActivity {
         getUserLogged();
 
         toolbar = findViewById(R.id.toolbar);
-        fab = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.nav_view);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open_string,R.string.close_string);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.setDrawerIndicatorEnabled(true);
+        toggle.syncState();
+
+
+
+//        fab = findViewById(R.id.fab);
+
         arrayCourses = new ArrayList<>();
         getCoursesFromDevice();
         addListCourses();
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onClick(View view) {
-//                getSupportFragmentManager().popBackStack();
-                if (getSupportFragmentManager().getFragments().size() == 1){
-                    System.out.println("un solo fragmento");
-                    fab.setVisibility(View.VISIBLE);
-                    return;
-                }else fab.setVisibility(View.INVISIBLE);
-                Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
-                System.out.println("Fragmento:" +fragment.getTag());
-                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                if (getSupportFragmentManager().getFragments().size() == 2){
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                    fab.setVisibility(View.VISIBLE);
-                    return;
-                }
-            }
-        });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("RestrictedApi")
+//            @Override
+//            public void onClick(View view) {
+////                getSupportFragmentManager().popBackStack();
+//                if (getSupportFragmentManager().getFragments().size() == 1){
+//                    System.out.println("un solo fragmento");
+//                    fab.setVisibility(View.VISIBLE);
+//                    return;
+//                }else fab.setVisibility(View.INVISIBLE);
+//                Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
+//                System.out.println("Fragmento:" +fragment.getTag());
+//                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//                if (getSupportFragmentManager().getFragments().size() == 2){
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                    fab.setVisibility(View.VISIBLE);
+//                    return;
+//                }
+//            }
+//        });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addCourseFragment();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                addCourseFragment();
+//            }
+//        });
     }
 
     private void getUserLogged(){
@@ -130,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("RestrictedApi")
     public void onResumeCourses(){
         listCoursesFragment.updateListCourses();
-        fab.setVisibility(View.VISIBLE);
+//        fab.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -145,40 +166,45 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (toggle.onOptionsItemSelected(item)){
             return true;
         }
-
         return super.onOptionsItemSelected(item);
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
     }
 
     @SuppressLint("RestrictedApi")
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getFragments().size() == 1){
-            System.out.println("un solo fragmento");
-            fab.setVisibility(View.VISIBLE);
-            return;
-        }else fab.setVisibility(View.INVISIBLE);
-        Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
-        System.out.println("Fragmento:" +fragment.getTag());
-        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-        if (getSupportFragmentManager().getFragments().size() == 2){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            fab.setVisibility(View.VISIBLE);
-            return;
-        }
+//        if (getSupportFragmentManager().getFragments().size() == 1){
+//            System.out.println("un solo fragmento");
+//            fab.setVisibility(View.VISIBLE);
+//            return;
+//        }else fab.setVisibility(View.INVISIBLE);
+//        Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
+//        System.out.println("Fragmento:" +fragment.getTag());
+//        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//        if (getSupportFragmentManager().getFragments().size() == 2){
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//            fab.setVisibility(View.VISIBLE);
+//            return;
+//        }
     }
 
     @SuppressLint("RestrictedApi")
     @Override
     protected void onResume() {
-        if (getSupportFragmentManager().getFragments().size() == 1){
-            fab.setVisibility(View.VISIBLE);
-        }else fab.setVisibility(View.INVISIBLE);
+//        if (getSupportFragmentManager().getFragments().size() == 1){
+////            fab.setVisibility(View.VISIBLE);
+//        }else fab.setVisibility(View.INVISIBLE);
         super.onResume();
     }
+
 }
