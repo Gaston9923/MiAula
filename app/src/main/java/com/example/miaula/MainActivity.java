@@ -12,6 +12,7 @@ import com.example.miaula.Fragments.AddCourseFragment;
 import com.example.miaula.Fragments.ListCoursesFragment;
 import com.example.miaula.Models.Course;
 import com.example.miaula.Models.User;
+import com.example.miaula.databinding.ActivityMainBinding;
 import com.google.android.material.circularreveal.CircularRevealFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
+    private ActivityMainBinding binding;
     private FloatingActionButton fab;
     private final MainActivity self = this;
     private CourseController courseController = CourseController.getInstance();
@@ -44,21 +45,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getUserLogged();
 
-        toolbar = findViewById(R.id.toolbar);
-        fab = findViewById(R.id.fab);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         arrayCourses = new ArrayList<>();
         getCoursesFromDevice();
         addListCourses();
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @SuppressLint("RestrictedApi")
+        binding.mainToolbar.title.setText("Mi Aula");
+        binding.mainToolbar.btnClose.setVisibility(View.GONE);
+        binding.mainToolbar.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                getSupportFragmentManager().popBackStack();
+                //                getSupportFragmentManager().popBackStack();
                 if (getSupportFragmentManager().getFragments().size() == 1){
                     System.out.println("un solo fragmento");
                     fab.setVisibility(View.VISIBLE);
@@ -75,7 +76,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("RestrictedApi")
+//            @Override
+//            public void onClick(View view) {
+////                getSupportFragmentManager().popBackStack();
+//                if (getSupportFragmentManager().getFragments().size() == 1){
+//                    System.out.println("un solo fragmento");
+//                    fab.setVisibility(View.VISIBLE);
+//                    return;
+//                }else fab.setVisibility(View.INVISIBLE);
+//                Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
+//                System.out.println("Fragmento:" +fragment.getTag());
+//                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//                if (getSupportFragmentManager().getFragments().size() == 2){
+//                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//                    fab.setVisibility(View.VISIBLE);
+//                    return;
+//                }
+//            }
+//        });
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addCourseFragment();
@@ -110,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.add(R.id.cl_fragment, addCourseFragment, "AddCourseFragment").commit();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        fab.setVisibility(View.GONE);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        binding.fab.setVisibility(View.GONE);
     }
 
     private void addListCourses(){
@@ -124,13 +146,13 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("RestrictedApi")
     public void hideFab(){
-        fab.setVisibility(View.INVISIBLE);
+        binding.fab.setVisibility(View.INVISIBLE);
     }
 
     @SuppressLint("RestrictedApi")
     public void onResumeCourses(){
         listCoursesFragment.updateListCourses();
-        fab.setVisibility(View.VISIBLE);
+        binding.fab.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -160,15 +182,15 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().getFragments().size() == 1){
             System.out.println("un solo fragmento");
-            fab.setVisibility(View.VISIBLE);
+            binding.fab.setVisibility(View.VISIBLE);
             return;
-        }else fab.setVisibility(View.INVISIBLE);
+        }else binding.fab.setVisibility(View.INVISIBLE);
         Fragment fragment = getSupportFragmentManager().getFragments().get(getSupportFragmentManager().getFragments().size()-1);
         System.out.println("Fragmento:" +fragment.getTag());
         getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         if (getSupportFragmentManager().getFragments().size() == 2){
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            fab.setVisibility(View.VISIBLE);
+            binding.fab.setVisibility(View.VISIBLE);
             return;
         }
     }
@@ -177,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         if (getSupportFragmentManager().getFragments().size() == 1){
-            fab.setVisibility(View.VISIBLE);
-        }else fab.setVisibility(View.INVISIBLE);
+            binding.fab.setVisibility(View.VISIBLE);
+        }else binding.fab.setVisibility(View.INVISIBLE);
         super.onResume();
     }
 }
