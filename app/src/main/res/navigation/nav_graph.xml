@@ -3,26 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/listCoursesFragment">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.miaula.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/listCoursesFragment"
+        android:name="com.example.miaula.Fragments.ListCoursesFragment"
+        android:label="ListCoursesFragment" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_listCoursesFragment_to_addCourseFragment"
+            app:destination="@id/addCourseFragment" />
+        <action
+            android:id="@+id/action_listCoursesFragment_to_menuCourseFragment"
+            app:destination="@id/menuCourseFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.miaula.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/addCourseFragment"
+        android:name="com.example.miaula.Fragments.AddCourseFragment"
+        android:label="AddCourseFragment" >
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_addCourseFragment_to_listCoursesFragment"
+            app:destination="@id/listCoursesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/menuCourseFragment"
+        android:name="com.example.miaula.Fragments.MenuCourseFragment"
+        android:label="MenuCourseFragment" >
+        <action
+            android:id="@+id/action_menuCourseFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment" />
+        <action
+            android:id="@+id/action_menuCourseFragment_to_editStudentsFragment"
+            app:destination="@id/editStudentsFragment" />
+        <action
+            android:id="@+id/action_menuCourseFragment_to_deleteStudentFragment"
+            app:destination="@id/deleteStudentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.miaula.Fragments.AddStudentFragment"
+        android:label="AddStudentFragment" />
+    <fragment
+        android:id="@+id/editStudentsFragment"
+        android:name="com.example.miaula.Fragments.EditStudentsFragment"
+        android:label="EditStudentsFragment" />
+    <fragment
+        android:id="@+id/deleteStudentFragment"
+        android:name="com.example.miaula.Fragments.DeleteStudentFragment"
+        android:label="DeleteStudentFragment" />
 </navigation>
