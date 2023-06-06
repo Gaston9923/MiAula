@@ -15,6 +15,8 @@ import com.example.miaula.Models.User;
 import com.example.miaula.databinding.ActivityMainBinding;
 import com.google.android.material.circularreveal.CircularRevealFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,13 +43,17 @@ public class MainActivity extends AppCompatActivity {
     private AddCourseFragment addCourseFragment;
     private ArrayList<Course> arrayCourses;
     private User userLogin;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        View view = binding.getRoot();
+        setContentView(view);
         getUserLogged();
+
+        getDataFromDB();
 
 //        setSupportActionBar(toolbar);
         arrayCourses = new ArrayList<>();
@@ -103,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
                 addCourseFragment();
             }
         });
+    }
+
+    private void getDataFromDB(){
+        CollectionReference users = db.collection("Users");
+        System.out.println("Usuarios: "+users.get().toString());
     }
 
     private void getUserLogged(){

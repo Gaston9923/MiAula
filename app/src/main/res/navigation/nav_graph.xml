@@ -7,7 +7,8 @@
     <fragment
         android:id="@+id/listCoursesFragment"
         android:name="com.example.miaula.Fragments.ListCoursesFragment"
-        android:label="ListCoursesFragment" >
+        android:label="ListCoursesFragment"
+        tools:layout="@layout/list_courses_fragment">
         <action
             android:id="@+id/action_listCoursesFragment_to_addCourseFragment"
             app:destination="@id/addCourseFragment" />
@@ -18,7 +19,8 @@
     <fragment
         android:id="@+id/addCourseFragment"
         android:name="com.example.miaula.Fragments.AddCourseFragment"
-        android:label="AddCourseFragment" >
+        android:label="AddCourseFragment"
+        tools:layout="@layout/add_course_fragment">
         <action
             android:id="@+id/action_addCourseFragment_to_listCoursesFragment"
             app:destination="@id/listCoursesFragment" />
@@ -26,7 +28,8 @@
     <fragment
         android:id="@+id/menuCourseFragment"
         android:name="com.example.miaula.Fragments.MenuCourseFragment"
-        android:label="MenuCourseFragment" >
+        android:label="MenuCourseFragment"
+        tools:layout="@layout/menu_course_fragment">
         <action
             android:id="@+id/action_menuCourseFragment_to_addStudentFragment"
             app:destination="@id/addStudentFragment" />
@@ -40,7 +43,8 @@
     <fragment
         android:id="@+id/addStudentFragment"
         android:name="com.example.miaula.Fragments.AddStudentFragment"
-        android:label="AddStudentFragment" />
+        android:label="AddStudentFragment"
+        tools:layout="@layout/add_student_fragment"/>
     <fragment
         android:id="@+id/editStudentsFragment"
         android:name="com.example.miaula.Fragments.EditStudentsFragment"
@@ -48,5 +52,6 @@
     <fragment
         android:id="@+id/deleteStudentFragment"
         android:name="com.example.miaula.Fragments.DeleteStudentFragment"
-        android:label="DeleteStudentFragment" />
+        android:label="DeleteStudentFragment"
+        tools:layout="@layout/delete_student_fragment"/>
 </navigation>

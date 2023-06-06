@@ -32,7 +32,6 @@
             android:text="Perez"
             android:textColor="@color/black"
             android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_names"
             app:layout_constraintStart_toEndOf="@+id/icon_student_men"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,8 +46,7 @@
             android:textColor="@color/black"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/icon_student_men"
-            app:layout_constraintTop_toBottomOf="@+id/tv_surname" />
+            app:layout_constraintStart_toEndOf="@+id/icon_student_men" />
 
         <ImageView
             android:id="@+id/icon_student_men"
