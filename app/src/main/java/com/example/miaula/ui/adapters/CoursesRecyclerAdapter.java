@@ -1,4 +1,4 @@
-package com.example.miaula.Adapters;
+package com.example.miaula.ui.adapters;
 
 
 import android.content.Context;
@@ -16,7 +16,7 @@ import com.example.miaula.Controllers.CourseController;
 
 import com.example.miaula.Fragments.MenuCourseFragment;
 import com.example.miaula.MainActivity;
-import com.example.miaula.Models.Course;
+import com.example.miaula.models.Course;
 import com.example.miaula.R;
 
 import java.util.ArrayList;

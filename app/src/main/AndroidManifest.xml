@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MiAula"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.WelcomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true">
             <intent-filter>

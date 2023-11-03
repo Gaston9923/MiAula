@@ -1,4 +1,4 @@
-package com.example.miaula.Adapters;
+package com.example.miaula.ui.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miaula.Controllers.CourseController;
-import com.example.miaula.Models.Student;
+import com.example.miaula.models.Student;
 import com.example.miaula.R;
 
 public class StudentHolder extends RecyclerView.ViewHolder {

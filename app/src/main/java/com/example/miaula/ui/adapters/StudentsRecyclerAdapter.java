@@ -1,4 +1,4 @@
-package com.example.miaula.Adapters;
+package com.example.miaula.ui.adapters;
 
 
 import android.content.Context;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miaula.Controllers.CourseController;
-import com.example.miaula.Models.Student;
+import com.example.miaula.models.Student;
 import com.example.miaula.R;
 
 import java.util.ArrayList;
